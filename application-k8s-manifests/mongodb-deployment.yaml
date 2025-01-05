@@ -23,7 +23,12 @@ spec:
             - containerPort: 27017
           volumeMounts:
             - name: mongo-data
-              mountPath: /data/db
+              mountPath: /data/db # MongoDB'nin veri klasörü
+      volumes:
+        - name: mongo-data
+          persistentVolumeClaim:
+            claimName: mongo-data-pvc  # PVC adı
+
 ---
 apiVersion: v1
 kind: Service
