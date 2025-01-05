@@ -16,7 +16,7 @@ spec:
       containers:
         - name: mongodb
           image: mongo:latest
-          environment:
+          env:
             - name: MONGO_INITDB_DATABASE
               value: "kafka_events"
           ports:
@@ -46,4 +46,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi

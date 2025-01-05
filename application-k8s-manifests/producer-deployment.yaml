@@ -16,7 +16,7 @@ spec:
       containers:
         - name: producer
           image: enginnvr/producer:latest  # Docker Hub'dan alınacak imaj
-          environment:
+          env:
             - name: KAFKA_BROKER
               value: "kafka-broker:9092"
             - name: KAFKA_TOPIC
