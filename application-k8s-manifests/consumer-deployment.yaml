@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: consumer
-          image: yourrepo/consumer:latest
+          image: enginnvr/consumer:latest
           env:
             - name: KAFKA_BROKER
               value: "kafka-broker:9092"

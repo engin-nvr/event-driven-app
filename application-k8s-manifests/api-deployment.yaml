@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: yourrepo/api:latest
+          image: enginnvr/api:latest
           env:
             - name: MONGO_URI
               value: "mongodb://mongodb:27017"
