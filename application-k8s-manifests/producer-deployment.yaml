@@ -1,9 +1,8 @@
+# producer-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: producer
-  labels:
-    app: producer
 spec:
   replicas: 1
   selector:
@@ -16,22 +15,22 @@ spec:
     spec:
       containers:
         - name: producer
-          image: enginnvr/producer:latest
-          env:
+          build:
+            context: ./producer
+          environment:
             - name: KAFKA_BROKER
               value: "kafka-broker:9092"
             - name: KAFKA_TOPIC
               value: "events_topic"
-          ports:
-            - containerPort: 8080
+          command: ["node", "index.js"]
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: producer
 spec:
+  selector:
+    app: producer
   ports:
     - port: 8080
       targetPort: 8080
-  selector:
-    app: producer

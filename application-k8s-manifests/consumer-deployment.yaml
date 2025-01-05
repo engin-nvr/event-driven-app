@@ -1,9 +1,8 @@
+# consumer-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: consumer
-  labels:
-    app: consumer
 spec:
   replicas: 1
   selector:
@@ -16,8 +15,9 @@ spec:
     spec:
       containers:
         - name: consumer
-          image: enginnvr/consumer:latest
-          env:
+          build:
+            context: ./consumer
+          environment:
             - name: KAFKA_BROKER
               value: "kafka-broker:9092"
             - name: KAFKA_TOPIC
@@ -30,16 +30,15 @@ spec:
               value: "kafka_events"
             - name: MONGO_COLLECTION_NAME
               value: "events"
-          ports:
-            - containerPort: 8081
+          command: ["node", "index.js"]
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: consumer
 spec:
+  selector:
+    app: consumer
   ports:
     - port: 8081
       targetPort: 8081
-  selector:
-    app: consumer
