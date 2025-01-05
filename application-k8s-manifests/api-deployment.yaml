@@ -36,5 +36,8 @@ spec:
   selector:
     app: api
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 3000         # Cluster içindeki port
+      targetPort: 3000    # Uygulamanın dinlediği port
+      nodePort: 30080     # Dışarıdan erişilecek port
+  type: NodePort           # NodePort olarak ayarlandı
+
