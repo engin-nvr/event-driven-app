@@ -15,8 +15,7 @@ spec:
     spec:
       containers:
         - name: api
-          build:
-            context: ./api
+          image: enginnvr/api:latest  # Docker Hub'dan alınacak imaj
           environment:
             - name: MONGO_URI
               value: "mongodb://mongodb:27017"
