@@ -1,0 +1,9 @@
+# Helm deposunu ekleyin ve güncelleyin
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+# Prometheus kurulumu
+helm install prometheus prometheus-community/kube-prometheus-stack
+
+# Prometheus'a erişim sağlama
+kubectl port-forward svc/prometheus-operated 9090:9090
